@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React函数组件</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <!-- 在浏览器端解析jsx语法性能特别低下：在运行时解析 -->
+    <script src="js/browser.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        // 类组件
+        
+        class List extends React.Component{
+
+            render(){
+                return (
+                    <div className="list">
+                        <ul>
+                            <li>类组件</li>
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <List/>,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
