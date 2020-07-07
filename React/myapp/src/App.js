@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
 import List from './components/List';
+import TodoList from './components/TodoList'
 
 // function App() {
 //   let qty = 10;
@@ -72,6 +73,8 @@ class App extends Component{
       <button onClick={this.changeLaoxie}>修改laoxie</button>
 
       <List data={this.state.userlist}/>
+
+      <TodoList/>
     </div>
 
   }
