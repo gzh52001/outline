@@ -1,7 +1,10 @@
-import React,{Component} from 'react';
+import React,{Component,createContext} from 'react';
 
 import TodoForm from './TodoForm';
 import TodoContent from './TodoContent';
+
+// MyContext就是一个组件
+import MyContext from './TodoContext';
 
 class TodoList extends Component{
     constructor(){
@@ -43,18 +46,38 @@ class TodoList extends Component{
             data:[newData,...data]
         })
     }
-    removeItem(){
-
+    removeItem(id){
+        
+        const {data} = this.state;
+        this.setState({
+            data:data.filter(item=>item.id!=id)
+        });
     }
-    changeItem(){
-
+    changeItem(id){
+        const {data} = this.state;
+        this.setState({
+            data:data.map(item=>{
+                if(item.id === id){
+                    item.done = true
+                }
+                return item
+            })
+        });
     }
     render(){
         const {data} = this.state;
+        const doneList = data.filter(item=>item.done);
+        const weiDoneList = data.filter(item=>!item.done)
         return (
             <div className="todolist">
-                <TodoForm addItem={this.addItem}/>
-                <TodoContent data={data}/>
+                <h1>待办事项</h1>
+                <MyContext.Provider value={{remove:this.removeItem,done:this.changeItem}}>
+                    <TodoForm addItem={this.addItem}/>
+                    <TodoContent data={data} removeItem={this.removeItem} changeItem={this.changeItem}/>
+                </MyContext.Provider>
+                <div>
+                    总数：{data.length}，完成：{doneList.length}，未完成：{weiDoneList.length}
+                </div>
             </div>
         )
     }

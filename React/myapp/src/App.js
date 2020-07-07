@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 
 import List from './components/List';
-import TodoList from './components/TodoList'
+import TodoList from './components/TodoList/index'
+import Test from './components/Test'
 
 // function App() {
 //   let qty = 10;
@@ -75,6 +76,8 @@ class App extends Component{
       <List data={this.state.userlist}/>
 
       <TodoList/>
+
+      <Test num={10} length="5" age="19"/>
     </div>
 
   }

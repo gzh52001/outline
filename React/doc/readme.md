@@ -207,6 +207,10 @@ JSX知识React.createElement()的语法糖，需要balbel对它进行编译成�
             <button onClick={this.handle}></button>
         ```
         * event对象：事件处理函数的最后一个参数
+        * 传参
+            * bind
+                * 通过bind改变this指向，只会生效第一次
+                * 任意数量参数的传递
     * this指向
         * render    this指向实例
         * construtor    
@@ -248,13 +252,18 @@ JSX知识React.createElement()的语法糖，需要balbel对它进行编译成�
         * 如何获取props
             * 函数组件：函数的第一个参数
             * 函数组件：this.props
+        * 数据类型校验
 
     * 条件渲染
         > 三元运算
     * 获取真实节点：ref
     
 ## 组件通讯
-* props
+* 父子通讯：props
+* 子父通讯：传递函数到子组件执行
+* 深层次数组通讯
+    * 逐层传递（不推荐）
+    * context
 
 ## 受控组件与非受控组建
 * 受控组件：表单的值受到组件state的控制

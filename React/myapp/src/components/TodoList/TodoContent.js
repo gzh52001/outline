@@ -16,7 +16,13 @@ function TodoContent(props){
             </thead>
             <tbody>
                 {
-                    props.data.map((item,idx)=><TodoItem key={item.id} index={idx} data={item}/>)
+                    props.data.map((item,idx)=><TodoItem 
+                        key={item.id} 
+                        index={idx} 
+                        data={item}
+                        removeItem={props.removeItem}
+                        changeItem={props.changeItem}
+                    />)
                 }
             </tbody>
         </table>
