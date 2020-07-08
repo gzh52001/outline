@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import List from './components/List';
 import TodoList from './components/TodoList/index'
 import Test from './components/Test'
+import Lifecycle from './components/Lifecycle'
 
 // function App() {
 //   let qty = 10;
@@ -28,6 +29,8 @@ class App extends Component{
     // 类组件的状态（数据）
     this.state = {
       qty:10,
+      age:20,
+      username:'laoxie',
       userlist:[{
         username:'laoxie',
         password:123456,
@@ -66,9 +69,9 @@ class App extends Component{
     })
   }
   render(){
-    console.log('render')
+    // console.log('render')
     return <div>
-      {this.state.qty}
+      {/* {this.state.qty}
 
       <button onClick={this.changeQty}>修改qty</button>
       <button onClick={this.changeLaoxie}>修改laoxie</button>
@@ -77,7 +80,23 @@ class App extends Component{
 
       <TodoList/>
 
-      <Test num={10} length="5" age="19"/>
+      <Test num={10} length="5" age="19"/> */}
+      {
+        this.state.age >=18 ? 
+        <Lifecycle username={this.state.username}/>
+        :
+        <div>未成年禁止入内</div>
+      }
+      <button onClick={()=>{
+        this.setState({
+          username:'jingjing'
+        })
+      }}>修改名字{this.state.username}</button>
+      <button onClick={()=>{
+        this.setState({
+          age:this.state.age-1
+        })
+      }}>修改年龄{this.state.age}</button>
     </div>
 
   }
