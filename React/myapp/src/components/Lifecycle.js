@@ -1,7 +1,7 @@
 import React from 'react'
 
-// class Lifecycle extends React.Component{
-class Lifecycle extends React.PureComponent{
+class Lifecycle extends React.Component{
+// class Lifecycle extends React.PureComponent{
     constructor(){
         // 初始化
         super();
