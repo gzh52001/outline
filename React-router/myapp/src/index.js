@@ -9,7 +9,9 @@ const Router = process.env.NODE_ENV === 'production' ? BrowserRouter : HashRoute
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <App>
+        <div>你狠棒</div>
+      </App>
       {/* <Route component={App} /> */}
     </React.StrictMode>
   </Router>

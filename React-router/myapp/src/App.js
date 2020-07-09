@@ -1,10 +1,12 @@
 import React from 'react';
 import {Route,Redirect,Switch,Link,NavLink,withRouter} from 'react-router-dom'
 import './App.css';
+import {withUser} from './utils/hoc'
 
 import Home from './pages/Home';
 import Reg from './pages/Reg';
 import Login from './pages/Login';
+
 
 
 function App(props) {
@@ -58,5 +60,6 @@ function App(props) {
     </div>
   );
 }
-App = withRouter(App);
-export default App;
+App = withRouter(App); // 传入App组件，返回一个新的组件
+App = withUser(App)
+export default App; //<App/>
