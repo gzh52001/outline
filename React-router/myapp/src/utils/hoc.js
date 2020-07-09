@@ -1,5 +1,7 @@
 import React from 'react';
 
+// 传递属性
+// 作用：往组件传递属性，提取公共代码
 export function withUser(InnerComponent){
     class OuterComponent extends React.Component{
         constructor(){
@@ -33,4 +35,40 @@ export function withUser(InnerComponent){
     // }
 
     return OuterComponent
+}
+
+// 反向继承
+// 作用：拦截，如：用户登录后才可访问
+export function withLogin(InnerComponent){
+    class OuterComponent extends InnerComponent{
+        constructor(){
+            super();
+            // this.state = {
+            //     login:false
+            // }
+            if(!this.state){
+                this.state = {}
+            }
+            this.state.login = false;
+        }
+        componentDidMount(){
+            let userInfo = localStorage.getItem('userInfo');
+            console.log('userInfo',userInfo)
+            if(userInfo){
+                this.setState({
+                    login:true
+                })
+            }
+
+            super.componentDidMount();
+        }
+        render(){
+            const {login} = this.state;
+            if(login){
+                return super.render();
+            }
+            return <div>请先登录系统</div>
+        }
+    }
+    return OuterComponent;
 }

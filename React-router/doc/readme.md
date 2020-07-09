@@ -169,3 +169,56 @@
     }
     
 ```
+
+* 路由传参
+    * search    `/goods?id=1234`
+    ```js
+        // 声明式导航传参
+        <NavLin to={{pathname:'/goods',search:'?id=1234'}}>
+
+        // 编程式导航传参
+        history.push('/goods?id=1234');
+        history.push({pathname:'/goods',search:'?id=1234'});
+    ```
+    * state
+    ```js
+        history.push({pathname:'/goods',state:{id:1234}});
+    ```
+    * 动态路由
+    ```js
+        <Route path="/goods/:id" component={Goods}/>
+    ```
+    * 接收路由参数
+        * 动态路由：`props.match.params`
+        * search: `props.location.search`
+        * state: `props.location.state`
+            > 刷新后state数据会丢失
+* 嵌套路由
+    * vue-router
+    ```js
+
+        new VueRouter({
+            routes:[{
+                path:'/category',
+                children:[{
+                    path:'phone',
+                    component:Phone
+                },{
+                    path:'computer',
+                    component:Computer
+                }]
+            }]
+        })
+    ```
+    * react-router
+    ```js
+        <Route path="/category" component={Category} />
+    ```
+
+* 练习
+    * 搭建一个简易项目，包含以下模块，且能实现跳转和传参
+        * 首页
+        * 注册
+        * 登录
+        * 我的
+        * 发现

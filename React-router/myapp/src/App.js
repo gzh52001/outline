@@ -6,7 +6,9 @@ import {withUser} from './utils/hoc'
 import Home from './pages/Home';
 import Reg from './pages/Reg';
 import Login from './pages/Login';
-
+import Cart from './pages/Cart';
+import Goods from './pages/Goods';
+import Category from './pages/Category';
 
 
 function App(props) {
@@ -20,6 +22,9 @@ function App(props) {
   },{
     text:'登录',
     path:'/login'
+  },{
+    text:'购物车',
+    path:'/cart'
   }];
 
   const goto = (path)=>{
@@ -53,6 +58,9 @@ function App(props) {
           <Route path='/home' component={Home} />
           <Route path='/reg' component={Reg} />
           <Route path='/login' component={Login} />
+          <Route path='/cart' component={Cart} />
+          <Route path='/category' component={Category} />
+          <Route path='/goods/:id' component={Goods} />
           <Route path='/notfound' component={()=><div>notfound</div>} />
           <Redirect from='/' to='/home' exact />
           <Redirect to="/notfound"/>
