@@ -31,15 +31,35 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
             {
                 // 匹配规则
                 test:/\.jsx?$/,
+                exclude:path.join(__dirname,'node_modules'),
                 use:[{
                     loader:'babel-loader',
                     options:{
-                        presets:['@babel/preset-react']
+                        presets:['@babel/preset-react'],
+                        plugins:[
+                            ['@babel/plugin-proposal-decorators',{legacy:true}],
+                            ['@babel/plugin-proposal-class-properties',{loose:true}],
+                        ]
                     }
                 }],
 
                 // loader为use的简化写法
                 // loader:['babel-loader']
+            },
+
+            // 样式加载器
+            {
+                test:/\.css$/,
+                // node_modules目录下的所有样式不再进行编译
+                // exclude:path.join(__dirname,'node_modules'),
+                use:['style-loader','css-loader']
+            },
+
+            // sass加载器
+            {
+                test:/\.scss$/,
+                exclude:path.join(__dirname,'node_modules'),
+                loader:['style-loader','css-loader','sass-loader']
             }
         ]
     },

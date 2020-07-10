@@ -35,7 +35,10 @@
     * webpack & webpack-cli & webpack-dev-server
     * @babel/core & babel-loader & @babel/preset-react
     * html-webpack-plugin
-    * ...
+    * 样式
+        * style-loader
+        * css-loader
+        * sass-loader
 3. 创建webpack配置文件
     > 默认配置文件名：`webpack.config.js`，为一个commonJS模块
     * 配置选项
