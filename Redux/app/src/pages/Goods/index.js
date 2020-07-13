@@ -3,6 +3,34 @@ import { Button,Row,Col,Descriptions } from 'antd';
 import {ShoppingCartOutlined,ShoppingOutlined} from '@ant-design/icons'
 import http,{request} from '@/utils/http';
 
+import store from '../../store';
+
+const state = store.getState();
+store.subscribe(function(){
+    console.log('修改',JSON.stringify(store.getState()));
+})
+console.log('store',store);
+console.log('state',state);
+store.dispatch({
+    type:'add_to_cart',
+    goods:{
+            goods_id:10086,
+            goods_name:'2019新款外套男韩版潮流休闲帅气工装夹克男士灯芯绒春秋季上衣服 咖啡色 XL',
+            goods_price:'158.00',
+            goods_image:'https://www.nanshig.com/data/upload/shop/store/goods/45/45_06266617413539238_360.jpg',
+            goods_qty:1
+    }
+});
+
+setTimeout(()=>{
+    store.dispatch({
+        type:'change_qty',
+        goods_id:10086,
+        goods_qty:5
+    })
+
+},3000)
+
 import './style.scss';
 class Goods extends Component{
     state = {
