@@ -1,0 +1,18 @@
+.recommend{
+    img {
+        width:100%;
+    }
+}
+.goodslist{
+    padding:15px;
+    img{width:100%;}
+    h3{font-weight: bold;border-left:10px solid #58bc58; padding-left:10px;color:#58bc58}
+}
+.price{
+    span{
+        color:#f00;
+        &::before{
+            content:'￥'
+        }
+    }
+}

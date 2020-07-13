@@ -25,6 +25,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
         port:2001
     },
 
+    resolve:{
+        alias:{
+            '@':path.join(__dirname,'src'),
+            '@com':path.join(__dirname,'src/components'),
+        }
+    },
+
     // 加载器
     module:{
         rules:[

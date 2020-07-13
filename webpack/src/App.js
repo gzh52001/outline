@@ -15,6 +15,7 @@ import Mine from './pages/Mine'
 import Discover from './pages/Discover'
 import Reg from './pages/Reg'
 import Login from './pages/Login'
+import Goods from './pages/Goods'
 
 @withRouter
 class App extends React.Component {
@@ -85,6 +86,7 @@ class App extends React.Component {
                     {
                         menu.map(item => <Route key={item.path} path={item.path} component={item.component} />)
                     }
+                    <Route path='/goods/:id' component={Goods} />
                     <Route path='/login' component={Login} />
                     <Route path='/reg' component={Reg} />
                     <Redirect from='/' to='/home' exact />
