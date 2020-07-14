@@ -22,10 +22,10 @@ import Cart from './pages/Cart'
 const mapStateToProps = (state)=>{
     // state： redux中的state
     // 必须返回一个对象
-    // console.log('state=',state)
+    console.log('App.state=',state)
     return {
         // 这个对象的属性就会自动传入组件的props
-        cartCount:state.cartlist.length
+        cartCount:state.cart.cartlist.length
     }
 }
 

@@ -121,3 +121,6 @@
         2. 使用`<Provider/>`组件
         3. 使用高阶组件`connect()`
     
+
+* Action Creator
+    > 为了简化代码，封装一个用于生成action函数

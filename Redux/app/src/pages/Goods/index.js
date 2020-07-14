@@ -3,6 +3,7 @@ import { Button,Row,Col,Descriptions } from 'antd';
 import {ShoppingCartOutlined,ShoppingOutlined} from '@ant-design/icons'
 import {connect} from 'react-redux';
 import http,{request} from '@/utils/http';
+import cartAction from '../../store/actions/cart';
 
 // import store from '../../store';
 
@@ -35,7 +36,18 @@ import http,{request} from '@/utils/http';
 import './style.scss';
 
 @connect((state)=>({
-    cartlist:state.cartlist
+    cartlist:state.cart.cartlist
+}),dispatch=>({
+     add2cart(goods){
+        // dispatch({
+        //     type:'add_to_cart',
+        //     goods
+        // })
+        dispatch(cartAction.add(goods))
+     },
+     changeQty(goods_id,goods_qty){
+       dispatch(cartAction.change(goods_id,goods_qty))
+     }
 }))
 class Goods extends Component{
     state = {
@@ -43,7 +55,7 @@ class Goods extends Component{
     }
     add2cart = ()=>{
         const {data} = this.state;
-        const {dispatch,cartlist} = this.props;
+        const {cartlist,add2cart,changeQty} = this.props;
         const {goods_name,goods_id,goods_price,goods_image} = data;
         // store.dispatch({
         //     type:'add_to_cart',
@@ -60,23 +72,9 @@ class Goods extends Component{
         // 未添加：添加
         const currentGoods = cartlist.filter(item=>item.goods_id === goods_id)[0];
         if(currentGoods){
-            dispatch({
-                type:'change_qty',
-                goods_id,
-                goods_qty:currentGoods.goods_qty+1
-            })
+            changeQty(goods_id,currentGoods.goods_qty+1)
         }else{
-            dispatch({
-                type:'add_to_cart',
-                goods:{
-                    goods_name,
-                    goods_id,
-                    goods_price,
-                    goods_image,
-                    goods_qty:1
-                }
-            })
-
+            add2cart({goods_name,goods_id,goods_price,goods_image,goods_qty:1})
         }
     }
     buyNow = ()=>{

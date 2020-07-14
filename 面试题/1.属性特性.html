@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性特性</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        /*
+            属性特性
+                * 值属性：有value的属性
+                    * configurable  可配置性（总开关）
+                    * writable  可写性
+                    * enumerable    可枚举性（是否可遍历）
+                    * value 
+                * 存储器属性：getter&setter
+                    * configurable
+                    * enumerable
+                    * get
+                    * set
+
+            控制属性特性的方式：Object.defineProperty(obj,pro,descriptor)
+            获取某个属性的属性特性：Object.getOwnPropertyDescriptor(obj,pro)
+        */
+       
+       const app = document.getElementById('app');
+
+       let goods = {
+           _ygj:599,
+           qty:1,
+           name:'huawei mate40 pro',
+           price:5999,
+
+           // 存储器属性:getter
+           get ygj(){
+               return this._ygj
+           },
+           set ygj(newValue){
+               console.log('setter=',newValue);
+
+                // vue监听到某个属性修改
+                // 更新view
+                app.innerText = '员工价：'+newValue;
+
+                this._ygj = newValue;
+           }
+        }
+        
+        // 1. 设置一个对象的属性为只读属性
+        Object.defineProperty(goods,'qty',{
+            writable:false
+        });
+
+        // 2. 设置price属性补课遍历、
+        Object.defineProperty(goods,'price',{
+            enumerable:false
+        })
+
+        // 3. 给对象添加一个属性
+        // goods.oldPrice = 6999; // 传统方式添加的属性，默认属性特性都为true
+        Object.defineProperty(goods,'oldPrice',{
+            // defineProperty添加的属性，默认属性特性都为false
+            value:6999
+        })
+
+        for(let key in goods){
+            console.log(key)
+        }
+
+        // Object.defineProperty(goods,'goodsName',{
+        //     get(){
+        //         return this.name;
+        //     }
+        // })
+        
+
+        app.innerText = `员工价：${goods.ygj}`;
+
+    </script>
+</body>
+</html>
