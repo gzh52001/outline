@@ -1,43 +1,83 @@
 import React,{Component} from 'react';
 import { Button,Row,Col,Descriptions } from 'antd';
 import {ShoppingCartOutlined,ShoppingOutlined} from '@ant-design/icons'
+import {connect} from 'react-redux';
 import http,{request} from '@/utils/http';
 
-import store from '../../store';
+// import store from '../../store';
 
-const state = store.getState();
-store.subscribe(function(){
-    console.log('修改',JSON.stringify(store.getState()));
-})
-console.log('store',store);
-console.log('state',state);
-store.dispatch({
-    type:'add_to_cart',
-    goods:{
-            goods_id:10086,
-            goods_name:'2019新款外套男韩版潮流休闲帅气工装夹克男士灯芯绒春秋季上衣服 咖啡色 XL',
-            goods_price:'158.00',
-            goods_image:'https://www.nanshig.com/data/upload/shop/store/goods/45/45_06266617413539238_360.jpg',
-            goods_qty:1
-    }
-});
+// const state = store.getState();
+// store.subscribe(function(){
+//     console.log('修改',JSON.stringify(store.getState()));
+// })
+// console.log('store',store);
+// console.log('state',state);
+// store.dispatch({
+//     type:'add_to_cart',
+//     goods:{
+//             goods_id:10086,
+//             goods_name:'2019新款外套男韩版潮流休闲帅气工装夹克男士灯芯绒春秋季上衣服 咖啡色 XL',
+//             goods_price:'158.00',
+//             goods_image:'https://www.nanshig.com/data/upload/shop/store/goods/45/45_06266617413539238_360.jpg',
+//             goods_qty:1
+//     }
+// });
 
-setTimeout(()=>{
-    store.dispatch({
-        type:'change_qty',
-        goods_id:10086,
-        goods_qty:5
-    })
+// setTimeout(()=>{
+//     store.dispatch({
+//         type:'change_qty',
+//         goods_id:10086,
+//         goods_qty:5
+//     })
 
-},3000)
+// },3000)
 
 import './style.scss';
+
+@connect((state)=>({
+    cartlist:state.cartlist
+}))
 class Goods extends Component{
     state = {
         data:{}
     }
     add2cart = ()=>{
+        const {data} = this.state;
+        const {dispatch,cartlist} = this.props;
+        const {goods_name,goods_id,goods_price,goods_image} = data;
+        // store.dispatch({
+        //     type:'add_to_cart',
+        //     goods:{
+        //         goods_name,
+        //         goods_id,
+        //         goods_price,
+        //         goods_qty:1
+        //     }
+        // })
 
+        // 判断当前商品是否已经添加到购物车
+        // 已添加：修改数量
+        // 未添加：添加
+        const currentGoods = cartlist.filter(item=>item.goods_id === goods_id)[0];
+        if(currentGoods){
+            dispatch({
+                type:'change_qty',
+                goods_id,
+                goods_qty:currentGoods.goods_qty+1
+            })
+        }else{
+            dispatch({
+                type:'add_to_cart',
+                goods:{
+                    goods_name,
+                    goods_id,
+                    goods_price,
+                    goods_image,
+                    goods_qty:1
+                }
+            })
+
+        }
     }
     buyNow = ()=>{
         const {history} = this.props;
@@ -63,7 +103,7 @@ class Goods extends Component{
         this.setState({
             data:{
                 ...datas.goods_info,
-                imgurl:datas.goods_image,
+                goods_image:datas.goods_image,
             }
         })
     }
@@ -73,7 +113,7 @@ class Goods extends Component{
         return (
             <div className="goods">
                 <div className="info">
-                    <img src={data.imgurl}/>
+                    <img src={data.goods_image}/>
                     <h1>{data.goods_name}</h1>
                     <div className="price">
                         <p>原价：<del>${data.goods_marketprice}</del></p>
@@ -82,7 +122,7 @@ class Goods extends Component{
                     </div>
                 </div>
                 <Button.Group>
-                    <Button type="primary" size="large" icon={<ShoppingCartOutlined />}>添加到购物车</Button>
+                    <Button type="primary" size="large" icon={<ShoppingCartOutlined />} onClick={this.add2cart}>添加到购物车</Button>
                     <Button type="danger" size="large" icon={<ShoppingOutlined />} onClick={this.buyNow}>立即购买</Button>
                 </Button.Group>
             </div>

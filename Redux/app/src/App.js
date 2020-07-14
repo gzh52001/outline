@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect,withRouter } from 'react-router-dom'
-import { Menu,Row, Col,Button } from 'antd'
-
+import { Menu,Row, Col,Button,Badge  } from 'antd'
+import {connect} from 'react-redux';
 import {HomeOutlined,UserOutlined,EyeOutlined,ShoppingCartOutlined} from '@ant-design/icons';
-
+// 传统使用store步骤1：
+// import store from './store'
 import 'antd/dist/antd.css'
 
 // 引入样式
@@ -18,7 +19,18 @@ import Login from './pages/Login'
 import Goods from './pages/Goods'
 import Cart from './pages/Cart'
 
+const mapStateToProps = (state)=>{
+    // state： redux中的state
+    // 必须返回一个对象
+    // console.log('state=',state)
+    return {
+        // 这个对象的属性就会自动传入组件的props
+        cartCount:state.cartlist.length
+    }
+}
+
 @withRouter
+@connect(mapStateToProps)
 class App extends React.Component {
     state = {
         current:'/home',
@@ -61,9 +73,21 @@ class App extends React.Component {
         this.setState({
             current:pathname
         })
+
+        // 传统使用store步骤2：
+        // store.subscribe(()=>{
+        //     this.forceUpdate();
+        // })
+
     }
     render() {
+        console.log('App.props=',this.props);
         const { menu,current } = this.state;
+
+        // 传统使用store步骤3：
+        // const {cartlist} = store.getState();
+
+        const {cartCount} = this.props;
         return (
             <div className="container">
                 <Row gutter={10} style={{backgroundColor:'#001529'}}>
@@ -76,7 +100,15 @@ class App extends React.Component {
                     >
                         {
                             menu.map(item=>(
-                                <Menu.Item title={item.title} key={item.path} icon={item.icon}>{item.title}</Menu.Item>
+                                <Menu.Item title={item.title} key={item.path} icon={item.icon}>
+                                    {
+                                        item.path === '/cart' ? 
+                                        <Badge count={cartCount}>
+                                        {item.title}
+                                        </Badge>:
+                                        item.title
+                                    }
+                                </Menu.Item>
                             ))
                         }
                     </Menu>
@@ -101,5 +133,22 @@ class App extends React.Component {
         )
     }
 }
+
+// withRouter = (InnerComponent)=>{
+//     return function(){
+//         return <InnerComponent />
+//     }
+// }
+// connect = ()=>{
+//     return function(InnerComponent){
+//         return function(){
+//             <InnerComponent />
+//         }
+//     }
+// }
+
+// App = withRouter(App)
+
+// App = connect(mapStateToProps)(App)
 
 export default App;
