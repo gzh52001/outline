@@ -179,3 +179,79 @@
         // obj is not iterable  obj不是一个迭代器
     }
 ```
+
+
+* action
+    * reducer action
+    * saga action
+
+* 利用发布者订阅者模式实现简易版redux
+```js
+    function createStore(reducer){
+        let state = reducer();
+
+        const listeners = [];
+
+        const getState = function(){
+            return state;
+        }
+
+        // 订阅
+        const subscribe = function(listener){
+            listeners.push(listener)
+            return function(){
+                // listeners = listeners.filter(item=>item!==listener)
+                const idx = listeners.indexOf(listener);
+                listeners.splice(idx,1);
+            }
+        }
+
+        // 发布
+        const dispatch = function(action){
+            state = reducer(state,action);
+
+            // 触发所有监听
+            for(let i=0;i<listeners.length;i++){
+                listeners[i]();
+            }
+
+            return action;
+        }
+
+        return {
+            getState,
+            subscribe,
+            dispatch,
+            replaceReducer
+        }
+    }
+
+
+    const store = createStore(reducer);
+
+    // 获取state
+    store.getState(); // 得到state
+
+    // 监听state修改：订阅
+    const unsubscribe1 = store.subscribe(function(){
+        console.log('订阅')
+    });
+    unsubscribe1();
+
+    const unsubscribe2 = store.subscribe(function(){
+        console.log('订阅')
+    })
+    unsubscribe2();
+
+    store.subscribe(function(){
+        console.log('订阅')
+    })
+    
+    // 修改state
+    store.dispatch({
+        type:'ADD_TO_CART',
+        goods
+    })
+```
+
+* code review  代码审核
