@@ -2,9 +2,13 @@
  * 封装ajax请求
  * fetch(url,options)
  */
-const baseUrl = process.env.NODE_ENV === 'development' ? 'https://www.nanshig.com' : 'http://aoxie.com'
+let baseUrl = process.env.NODE_ENV === 'development' ? 'https://www.nanshig.com' : 'http://aoxie.com'
 
 export async function request(url, data = {}, options = {}) {
+    if(options.baseUrl){
+        baseUrl = options.baseUrl;
+    }
+
     url = baseUrl + url;
     if(options.method){
         options.method = options.method.toLowerCase();

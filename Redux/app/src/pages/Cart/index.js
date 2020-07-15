@@ -12,28 +12,28 @@ import './style.scss';
     cartlist,
     totalPrice:cartlist.reduce((prev,item,idx,arr)=>prev+item.goods_price*item.goods_qty,0)
 }),(dispatch)=>{
-    // return {
-    //     removeCart(goods_id){
-    //         // dispatch({
-    //         //     type:'remove_from_cart',
-    //         //     goods_id
-    //         // })
-    //         dispatch(cartAction.remove(goods_id))
-    //     },
-    //     clearCart(){
-    //         dispatch({
-    //             type:'clear_cart',
-    //         })
-    //     },
-    //     changeQty(goods_id,goods_qty){
-    //         console.log('changeQty=',goods_id,goods_qty)
-    //         dispatch({
-    //             type:'change_qty',
-    //             goods_id,
-    //             goods_qty
-    //         })
-    //     }
-    // }
+    return {
+        removeCart(goods_id){
+            // dispatch({
+            //     type:'remove_from_cart',
+            //     goods_id
+            // })
+            dispatch(cartAction.remove(goods_id))
+        },
+        clearCart(){
+            dispatch({
+                type:'CLEAR_CART',
+            })
+        },
+        changeQty(goods_id,goods_qty){
+            console.log('changeQty=',goods_id,goods_qty)
+            dispatch({
+                type:'CHANGE_QTY_ASYNC',
+                goods_id,
+                goods_qty
+            })
+        }
+    }
 
     // bindActionCreators返回一个对象，对象的属性为cartAction中默认导出（export default）的方法
     // const res = bindActionCreators(cartAction,dispatch);
@@ -43,7 +43,7 @@ import './style.scss';
     //     }
     // }
     // console.log('res=',res);
-    return bindActionCreators(cartAction,dispatch);
+    // return bindActionCreators(cartAction,dispatch);
 })
 class Cart extends Component{
     state = {
@@ -90,7 +90,7 @@ class Cart extends Component{
                     renderItem={item => (
                     <List.Item extra={
                         <Tooltip title="删除">
-                            <Button type="danger" shape="circle" ghost size="small" icon={<CloseOutlined />} onClick={remove.bind(this,item.goods_id)}></Button>
+                            <Button type="danger" shape="circle" ghost size="small" icon={<CloseOutlined />} onClick={removeCart.bind(this,item.goods_id)}></Button>
                         </Tooltip>
                         }>
                         <List.Item.Meta
@@ -99,7 +99,7 @@ class Cart extends Component{
                         description={
                             <div className="price">
                                 <span>{item.goods_price}</span> &times; 
-                                <InputNumber size="small" style={{width:60,marginLeft:8}} min={1} max={10} value={item.goods_qty} onChange={change.bind(this,item.goods_id)} />
+                                <InputNumber size="small" style={{width:60,marginLeft:8}} min={1} max={10} value={item.goods_qty} onChange={changeQty.bind(this,item.goods_id)} />
                             </div>
                         }
                         
@@ -109,7 +109,7 @@ class Cart extends Component{
                 />
                 <Row gutter={20}>
                     <Col span={12}>
-                        <Button type="danger" ghost onClick={clear}>清空购物车</Button>
+                        <Button type="danger" ghost onClick={clearCart}>清空购物车</Button>
                     </Col>
                     <Col span={12} style={{textAlign:'right'}}>
                         <Button type="danger">去结算</Button>

@@ -40,6 +40,7 @@ function reducer(state = initState, action) {
 
         // 修改数量
         case CHANGE_QTY:
+            
             return {
                 ...state,
                 cartlist: state.cartlist.map(item => {

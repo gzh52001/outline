@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性特性</title>
+</head>
+<body>
+    <h1>生成器函数与迭代器</h1>
+    <script>
+        /*
+            2.生成器函数与迭代器
+                * 生成器函数Generator
+                    * 返回一个迭代器
+                    * yield 类似于return用于返回一个值
+                * 迭代器Iterator
+                    * next() 进入下一次迭代，并返回一个对象，格式为：{value: undefined, done: true}
+                        * value: 迭代器中某一次迭代的返回值
+                        * done：迭代器时候迭代完毕
+        */
+        
+        function* create(){
+            console.log(1)
+            yield 'start'
+            console.log(2)
+            yield 'jj'
+            console.log(3)
+            yield 100
+            console.log(4)
+            return 'laoxie'
+            console.log(5)
+        }
+
+        const it = create(); // 得到一个迭代器
+        console.log(it);
+
+        for(let val of it){
+            console.log('val:',val)
+        }
+
+    </script>
+</body>
+</html>

@@ -35,7 +35,7 @@ export function remove(goods_id){
 }
 
 export default{
-    // add,
+    add,
     change,
     remove,
     clear

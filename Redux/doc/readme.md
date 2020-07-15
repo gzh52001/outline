@@ -124,3 +124,58 @@
 
 * Action Creator
     > 为了简化代码，封装一个用于生成action函数
+
+
+## day6-3
+
+### 复习
+
+
+### 知识点
+* 修改数量需求：修改数量时，先请求服务器拿到库存信息，然后判断库存是否充足
+    * 充足：可以修改数量
+    * 不足：不允许修改数量
+
+* redux-saga
+    * 生成器函数 Generator
+        > 返回一个迭代器
+    * 迭代器 Iterator
+        > iterable 可迭代性
+        * next()方法
+
+    ```js
+        function show(){
+            return 100
+        }
+
+        show();//undefined
+
+        async function show(){
+            return 100
+        }
+        show();//Promise
+
+        function* show(){
+            return 100;
+        }
+        show();// Iterator
+
+    ```
+
+* for...of 
+> 用于遍历具有迭代器的数据
+```js
+    const obj = {
+        username:'laoxie',
+        password:1234
+    }
+
+    for(let key in obj){
+
+    }
+
+    // for...of
+    for(let key of obj){
+        // obj is not iterable  obj不是一个迭代器
+    }
+```
