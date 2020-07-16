@@ -5,6 +5,8 @@ import TodoList from './components/TodoList/index'
 import Test from './components/Test'
 import Lifecycle from './components/Lifecycle'
 
+import Hook from './components/Hook'
+
 // function App() {
 //   let qty = 10;
 //   const changeQty = ()=>{
@@ -81,7 +83,7 @@ class App extends Component{
       <TodoList/>
 
       <Test num={10} length="5" age="19"/> */}
-      {
+      {/* {
         this.state.age >=18 ? 
         <Lifecycle username={this.state.username}/>
         :
@@ -96,7 +98,9 @@ class App extends Component{
         this.setState({
           age:this.state.age-1
         })
-      }}>修改年龄{this.state.age}</button>
+      }}>修改年龄{this.state.age}</button> */}
+
+      <Hook/>
     </div>
 
   }

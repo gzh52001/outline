@@ -329,3 +329,61 @@ JSX知识React.createElement()的语法糖，需要balbel对它进行编译成�
             * 父组件刷新时
             * 强制刷新
         * PureComponent：已经做了优化后的组件（内部已经实现了shouldComponentUpdate）
+
+
+
+## Hook
+> Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
+
+* 使用Hook注意事项
+    1. 只能在函数组件中使用
+    2. 不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们
+    3. 函数组件每次更新都会从上往下执行完内部所有的代码
+
+    ```js
+        function Button(){
+            // Hook写在此处
+
+            if(){
+                // 此处不能使用Hook
+            }
+
+            retrun (
+                <button></button>
+            )
+        }
+
+    ```
+
+## 常用Hook
+* useState
+    * 格式：useState(defaultValue)
+    > 让我们能够在函数组件中使用State状态，它返回一个数组，数组第一项为state，第覆盖项为修改这个state的方法
+* useEffect
+    * 格式：useEffect(fn,[...依赖])
+* useContext
+```js
+    const MyContext = React.createContext(null);
+    <MyContext.Provider value={{ username: "laoxie", age: 18 }}>
+        <MyComponent />
+    </MyContext.Provider>;
+
+    // 以前的写法
+    function MyComponent(){
+        return <div>
+            <MyContext.Consumer>
+                {
+                    value=>{
+                        return <div>{value.username}</div>
+                    }
+                }
+            </MyContext.Consumer>
+        </div>
+    }
+
+    // useContext的写法
+    function MyCompnent() {
+        const user = useContext(MyContext); // laoxie
+        return <div>{user.username}</div>;
+    }
+```
