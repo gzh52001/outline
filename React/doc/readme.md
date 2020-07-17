@@ -356,12 +356,56 @@ JSX知识React.createElement()的语法糖，需要balbel对它进行编译成�
     ```
 
 ## 常用Hook
+> 增强函数组件的功能
 * useState
+    > 使函数组件能够实现类组件中的状态
     * 格式：useState(defaultValue)
     > 让我们能够在函数组件中使用State状态，它返回一个数组，数组第一项为state，第覆盖项为修改这个state的方法
+    ```js
+        const [state,changeState] = useState(1);
+        changeState(10);
+    ```
 * useEffect
+    > 使函数组件能够使用类组件中的生命周期函数
     * 格式：useEffect(fn,[...依赖])
+    ```js
+        useEffect(()=>{
+            // 初始化和组件刷新时执行(组件渲染后执行)
+            // 等效于：componentDidMount+componentDidUpdate
+        })
+        useEffect(()=>{
+            // 初始化和qty改变时执行
+            // 等效于：componentDidMount+优化后的componentDidUpdate
+        },[qty])
+
+         useEffect(()=>{
+            // 初始化时执行
+            // 等效于：componentDidMount
+        },[])
+
+        useEffect(()=>{
+            return function(){
+                // 这里的代码在组件销毁时执行
+                // 等效于：componentWillUnmount
+            }
+        })
+    ```
+* useMemo
+> 一般用户一些比较耗时的计算
+```js
+    const total = useMemo(function(){
+        return cartlist.reduce((pre,item)=>pre+item.price*item.qty,0)
+    },[cartlist])
+```
+* useCallback
+```js
+    const handle = useCallback(function(){
+       // 事件处理函数
+    },[])
+```
+
 * useContext
+> 简化context获取方式
 ```js
     const MyContext = React.createContext(null);
     <MyContext.Provider value={{ username: "laoxie", age: 18 }}>
@@ -387,3 +431,21 @@ JSX知识React.createElement()的语法糖，需要balbel对它进行编译成�
         return <div>{user.username}</div>;
     }
 ```
+* useReducer
+```js
+    const initState = {}
+    function reducer(state,action){
+        switch(action.type){
+            case xxx:
+
+
+            default:
+                throw new Error('acton不合法');
+        }
+    }
+    function Cart(){
+        const [state,dispatch] = useReducer(reducer,initState)
+    }
+```
+* useRef
+* useLayoutEffect
