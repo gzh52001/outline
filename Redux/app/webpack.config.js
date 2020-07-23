@@ -22,7 +22,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
         // 外部可访问
         // host:'0.0.0.0',
 
-        port:2001
+        port:2001,
+
+        // 启动服务器压缩
+        compress:true,
     },
 
     resolve:{
@@ -46,6 +49,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
                         plugins:[
                             ['@babel/plugin-proposal-decorators',{legacy:true}],
                             ['@babel/plugin-proposal-class-properties',{loose:true}],
+                            '@babel/plugin-syntax-dynamic-import',
+                            ['babel-plugin-import',{
+                                "libraryName": "antd",
+                                "libraryDirectory": "es",
+                                "style": "css" // `style: true` 会加载 less 文件
+                            }]
                         ]
                     }
                 }],

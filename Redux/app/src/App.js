@@ -1,23 +1,43 @@
-import React from 'react';
+import React,{lazy,Suspense} from 'react';
 import { Switch, Route, Redirect,withRouter } from 'react-router-dom'
 import { Menu,Row, Col,Button,Badge  } from 'antd'
 import {connect} from 'react-redux';
 import {HomeOutlined,UserOutlined,EyeOutlined,ShoppingCartOutlined} from '@ant-design/icons';
 // 传统使用store步骤1：
 // import store from './store'
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
 
 // 引入样式
 import './App.scss';
 
+// UI框架按需加载
+// import Menu from 'antd/lib/menu/index'
+// import 'antd/lib/menu/style/index.css'
+
+// babel-plugin-import实现antd按需加载
+// import { Menu,Row, Col,Button,Badge  } from 'antd'
+// 样式不需要额外引入，因为上面的代码会自动编译成以下代码
+// import Menu from 'antd/lib/menu/index'
+// import 'antd/lib/menu/style/index.css'
+
+
 // 引入页面组件
-import Home from './pages/Home'
-import Mine from './pages/Mine'
-import Discover from './pages/Discover'
-import Reg from './pages/Reg'
-import Login from './pages/Login'
-import Goods from './pages/Goods'
-import Cart from './pages/Cart'
+// import Home from './pages/Home'
+// import Mine from './pages/Mine'
+// import Discover from './pages/Discover'
+// import Reg from './pages/Reg'
+// import Login from './pages/Login'
+// import Goods from './pages/Goods'
+// import Cart from './pages/Cart'
+
+// 路由懒加载
+const Home = lazy(() => import("./pages/Home"));
+const Mine = lazy(() => import("./pages/Mine"));
+const Discover = lazy(() => import("./pages/Discover"));
+const Reg = lazy(() => import("./pages/Reg"));
+const Login = lazy(() => import("./pages/Login"));
+const Goods = lazy(() => import("./pages/Goods"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 const mapStateToProps = (state)=>{
     // state： redux中的state
@@ -119,7 +139,7 @@ class App extends React.Component {
                     </Col>
                     
                 </Row>
-                
+                <Suspense fallback={<div>loading...</div>}>
                 <Switch>
                     {
                         menu.map(item => <Route key={item.path} path={item.path} component={item.component} />)
@@ -129,6 +149,7 @@ class App extends React.Component {
                     <Route path='/reg' component={Reg} />
                     <Redirect from='/' to='/home' exact />
                 </Switch>
+            </Suspense>
             </div>
         )
     }
