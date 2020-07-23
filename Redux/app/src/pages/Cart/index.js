@@ -8,10 +8,12 @@ import http,{request} from '@/utils/http';
 
 import './style.scss';
 
-@connect(({cart:{cartlist}})=>({
-    cartlist,
-    totalPrice:cartlist.reduce((prev,item,idx,arr)=>prev+item.goods_price*item.goods_qty,0)
-}),(dispatch)=>{
+@connect(({cart})=>{
+    const cartlist = cart.get('cartlist').toJS()
+    return {
+        cartlist,
+        totalPrice:cartlist.reduce((prev,item,idx,arr)=>prev+item.goods_price*item.goods_qty,0)
+}},(dispatch)=>{
     return {
         removeCart(goods_id){
             // dispatch({

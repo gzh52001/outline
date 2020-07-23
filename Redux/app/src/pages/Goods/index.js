@@ -35,9 +35,12 @@ import cartAction from '../../store/actions/cart';
 
 import './style.scss';
 
-@connect((state)=>({
-    cartlist:state.cart.cartlist
-}),dispatch=>({
+@connect((state)=>{
+    const  cartlist = state.cart.toJS();
+    return {
+        cartlist
+    }
+},dispatch=>({
      add2cart(goods){
         // dispatch({
         //     type:'add_to_cart',

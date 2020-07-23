@@ -21,12 +21,16 @@ export async function request(url, data = {}, options = {}) {
         url = url + (url.includes('?') ? '&' : '?') + params.join('&')
     } else if (['post', 'put', 'patch'].includes(options.method)) {
         data = JSON.stringify(data);
+        if(options.headers === undefined){
+            options.header = {}
+        }
         options.headers['content-type'] = 'application/json';
+
+        options.body = data;
     }
 
     return await fetch(url, {
         ...options,
-        data,
         
     }).then(res => res.json());
     

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{266:function(e,n,r){"use strict";r.r(n);var s=r(0),t=r.n(s);class o extends s.Component{render(){return t.a.createElement("div",null,"Discover")}}n.default=o}}]);

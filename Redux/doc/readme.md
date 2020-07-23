@@ -255,3 +255,140 @@
 ```
 
 * code review  代码审核
+
+
+## 不可变数据
+
+* 可变数据Mutable Data
+```js
+    const goods = {
+        name:'huawei mate40 pro',
+        price:5999,
+        qty:10
+    }
+
+    let current = goods;
+
+    goods.price = 4999;
+    goods.marketPrice = 5999;
+
+    delete goods.qty;
+
+    // 如何解决goods被修改，current跟着改变的问题（改A废B）
+    // * 深拷贝：deepCopy
+        // * JSON.parse(JSON.stringify(goods))
+        // * 递归
+        // * 第三方工具：jQuery.clone(true), lodash, underscore
+    // * 浅拷贝：shallowCopy
+        // * 遍历
+        // * Object.assign()
+```
+
+* 不可变数据Immutable Data
+>Immutable Data 是一旦创建，就不能再被更改的数据，对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象
+
+* immutable.js
+> 采用数据**结构共享**的方式来实现
+结构共享：指没有改变的数据共用一个引用，这样既减少了深拷贝的性能消耗，也减少了内存
+```js
+    const goods = {
+        name:'huawei mate40 pro',
+        price:5999,
+        qty:10
+    }
+    goods.name; // huawei mate40 pro
+    let newGoods = goods;
+
+    // 深拷贝：内存占用与CPU资源循环
+
+    // 结构共享：结合数据引用与深拷贝的优点
+
+    // 把js数据变成immutable数据
+    const imGoods = immutable.fromJS(goods)
+```
+
+* 定义一个immutableData
+    * fromJS() 不推荐
+    * Map()
+    * List()
+* immutableData的操作
+    * 增
+        * set(key,val)
+        * setIn(keys,val)
+    * 删
+        * delete(key)
+        * deleteIn(keys)
+    * 改
+        * update(key,val=>newValue)
+        * updateIn(keys,val=>newValue)
+    * 查
+        * get(key)
+        * getIn(keys)
+        
+* 判断两个对象是否一致
+```js
+    let obj1 = {
+        name：'a',
+        password:123
+    }
+
+    let obj2 = {
+        name：'a',
+        password:123
+    }
+    // js的方式
+    if(obj1 === obj2){
+
+    }
+
+    // immutable
+    Immutable.is(imB,imB)
+
+```
+
+* 合并
+merge()/mergeDeep()
+```js
+    let obj1 = {
+        name：'a',
+        password:123,
+        age:18,
+        score:{
+            english:100,
+            math:120,
+            chinese:150
+        }
+    }
+
+    let obj2 = {
+        name：'b',
+        password:123456,
+        score:{
+            math:140
+        }
+    }
+
+    Object.assign(obj1,obj2);//{name:'b',password:123456,age:18,score:{math:140}}
+
+    // immutableData
+    const mayun = Map({
+          username:'马云',
+          money:150000000000,
+          info:{
+              married:true,
+              witticism:'我没见过钱，我对钱不感兴趣'
+          }
+      })
+      const laoxie = Map({
+          username:'laoxie',
+          gender:'男',
+          info:{
+              married:false,
+              age:18,
+          }
+      })
+      const newImData = mayun.merge(laoxie);// {username:'laoxie',gender:'男',money:150000000000,info:{married:false,age:18}}
+
+      const newImData2 = mayun.mergeDeep(laoxie);
+      //输出 ：{username:'laoxie',gender:'男',money:150000000000,info:{married:false,age:18,witticism:'我没见过钱，我对钱不感兴趣'}}
+```

@@ -3,6 +3,8 @@ import { Switch, Route, Redirect,withRouter } from 'react-router-dom'
 import { Menu,Row, Col,Button,Badge  } from 'antd'
 import {connect} from 'react-redux';
 import {HomeOutlined,UserOutlined,EyeOutlined,ShoppingCartOutlined} from '@ant-design/icons';
+import Immutable from 'immutable';
+
 // 传统使用store步骤1：
 // import store from './store'
 // import 'antd/dist/antd.css'
@@ -42,10 +44,11 @@ const Cart = lazy(() => import("./pages/Cart"));
 const mapStateToProps = (state)=>{
     // state： redux中的state
     // 必须返回一个对象
-    console.log('App.state=',state)
+    console.log('App.state=',state.cart.count())
     return {
         // 这个对象的属性就会自动传入组件的props
-        cartCount:state.cart.cartlist.length
+        // cartCount:state.cart.cartlist.length
+        cartCount:state.cart.count()
     }
 }
 
