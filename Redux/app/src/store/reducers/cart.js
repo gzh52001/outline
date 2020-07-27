@@ -108,7 +108,6 @@ console.log('Immutable.is(imObj1,imObj2)',Immutable.is(imObj1,imObj2));
 function reducer(state = initState, action) {
     console.log('initState',state);
     switch (action.type) {
-
         // 添加商品
         case ADD_TO_CART:
             // 返回一个新的State，这个state会自动覆盖store中的旧数据
