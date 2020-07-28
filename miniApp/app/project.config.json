@@ -67,9 +67,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "mine",
-					"pathName": "pages/mine/mine",
-					"query": "",
+					"name": "class",
+					"pathName": "pages/class/class",
+					"query": "id=31",
 					"scene": null
 				},
 				{

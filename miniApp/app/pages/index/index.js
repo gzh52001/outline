@@ -4,7 +4,28 @@ const app = getApp()
 
 Page({
   data: {
-   
+    classList:[],
+    categories:[],
+    categoryIndex:0,
+    cities:[],
+    cityIndex:0,
+  },
+  changeCategory(e){
+
+    this.setData({
+      categoryIndex:e.detail.value
+    })
+  },
+  changeCity(e){
+
+    this.setData({
+      cityIndex:e.detail.value
+    })
+  },
+  goto(){
+    wx.redirectTo({
+      url:'/pages/logs/logs'
+    })
   },
   onLoad: function (options) {
     console.log('index.onLoad',options)
@@ -33,6 +54,16 @@ Page({
       success:({data})=>{
         console.log('data=',data);
 
+        const categories = Array.from(new Set(data.data.map(item=>item.category)));
+        const cities = Array.from(new Set(data.data.map(item=>item.city)));
+
+        console.log('categories=',categories);
+        
+        this.setData({
+          classList:data.data,
+          categories,
+          cities
+        })
       },
       fail(){
        
@@ -42,9 +73,5 @@ Page({
       }
     })
   },
-  goto(){
-    wx.redirectTo({
-      url:'/pages/logs/logs'
-    })
-  }
+
 })

@@ -1,0 +1,8 @@
+<view>
+    <view class="title">学员名单</view>
+    <view class="weui-flex userlist">
+        <view class="weui-flex__item" wx:for="{{user}}">
+            <view class="item" bindtap="showUser" data-user="{{item}}">{{item.name}}</view>
+        </view>
+    </view>
+</view>

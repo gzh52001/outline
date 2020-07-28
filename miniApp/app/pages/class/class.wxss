@@ -1,0 +1,13 @@
+.item{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 2.3em;
+    width:156rpx;
+    line-height: 2.3em;
+}
+.userlist{
+    padding:20rpx;
+    flex-wrap:wrap
+}

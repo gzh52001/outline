@@ -14,6 +14,10 @@
 ## wxml
 * 数据绑定
 * 事件绑定
+    * 传递参数
+    * event
+        * target            触发事件的节点
+        * currentTarget     绑定事件的节点
 * 列表渲染
     * wx:for
 * 条件渲染
@@ -59,3 +63,5 @@
             * username  用户名
             * password  密码
             * class_id  班级id
+
+##

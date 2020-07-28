@@ -1,14 +1,28 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="weui-flex topbar">
+    <view class="weui-flex__item">
+      <picker bindchange="changeCategory" value="{{categoryIndex}}" range="{{categories}}">
+        <view class="picker">学科：{{categories[categoryIndex]}}</view>
+      </picker>
+    </view>
+    <view class="weui-flex__item">
+      <picker bindchange="changeCity" value="{{cityIndex}}" range="{{cities}}">
+        <view class="picker">城市：{{cities[cityIndex]}}</view>
+      </picker>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
-  <button bindtap="goto">logs</button>
+  <view class="weui-media-box weui-media-box_small-appmsg">
+    <view class="weui-cells weui-cells_in-small-appmsg">
+      <navigator url="/pages/class/class?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{classList}}">
+        <view class="weui-cell__hd">
+          <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+        </view>
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>{{item.city}}-{{item.category}}-{{item.name}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+    </view>
+  </view>
 </view>
