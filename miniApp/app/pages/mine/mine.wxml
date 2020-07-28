@@ -1,2 +1,33 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view class="title">
+  <text>WXML测试</text>
+</view>
+<view>
+  <swiper indicator-dots indicator-color="#58bc58" indicator-active-color="#f00">
+    <swiper-item>1</swiper-item>
+    <swiper-item>2</swiper-item>
+    <swiper-item>3</swiper-item>
+  </swiper>
+</view>
+<view>
+  <view>姓名：{{username}}</view>
+  <view wx:for="{{classList}}" wx:key="id" wx:for-item="classItem" wx:for-index="idx">
+    {{idx+1}} . {{classItem.city}}-{{classItem.category}}-{{classItem.name}}
+
+    学生：
+    <text wx:for="{{classItem.student}}" wx:key="*this">{{classItem.id}} : {{item}}</text>
+  </view>
+  <view>
+    <!-- 添加班级 -->
+    班级名称：
+    <input type="text" />
+    学科：
+    <picker bindchange="changeCategory" value="{{categoryIndex}}" range="{{categories}}">
+      <view class="picker">当前选择：{{categories[categoryIndex]}}</view>
+    </picker>
+    城市：
+    <picker mode="region" bindchange="regionChange" value="{{currentRegion}}" custom-item="全部">
+      <view class="picker">当前选择：{{currentRegion[0] + ',' +currentRegion[1] + ','+currentRegion[2] }}</view>
+    </picker>
+    <button>添加</button>
+  </view>
+</view>
