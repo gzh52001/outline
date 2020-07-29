@@ -2,6 +2,8 @@
 const app = getApp();
 console.log('app=', app);
 
+import moment from 'moment';
+
 Page({
 
   /**
@@ -15,7 +17,7 @@ Page({
     const {user} = e.currentTarget.dataset;
     wx.showModal({
       title: user.name + '详细信息',
-      content: `注册时间${user.regtime}`,
+      content: `注册时间${moment(user.regtime).format('YYYY-MM-DD hh:mm:ss')}`,
       success: function (res) {
         console.log(res);
         if (res.confirm) {

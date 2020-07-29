@@ -64,4 +64,24 @@
             * password  密码
             * class_id  班级id
 
-##
+## js模块化
+* 自定义模块
+* 第三方模块
+
+## 模板
+1. 使用`<template/>`定义模板
+    * name
+2. 使用`<import/>`或者`<include/>`引入模板文件
+3. 使用`<template/>`使用某一个模板代码
+    * is
+4. 给模板传递数据
+    * data
+
+## wxs模块化
+* <wxs/> 组件
+    * module
+    * src   ： src属性只能使用相对路径
+* 注意事项
+    * wxs与js语法不同，它有自己的语法，详情请看文档
+    * wxs脚本代码不允许调用wx的接口
+    * wxs不能与js通讯

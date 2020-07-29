@@ -1,0 +1,8 @@
+function formatDate(date){
+    var d = getDate(date);
+    console.log('666',d)
+    return d.toLocaleDateString()
+
+}
+
+module.exports.formatDate = formatDate

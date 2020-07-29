@@ -12,7 +12,7 @@
 		"minified": true,
 		"newFeature": false,
 		"coverView": true,
-		"nodeModules": false,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -78,6 +78,13 @@
 					"pathName": "pages/index/index",
 					"query": "test='laoxie'",
 					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "logs",
+					"pathName": "pages/logs/logs",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

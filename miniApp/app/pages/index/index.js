@@ -1,4 +1,13 @@
 //index.js
+const http = require('../../utils/http');
+console.log('http=',http)
+
+import res from '../../utils/http';
+console.log('esm=',res);
+
+import moment from 'moment';
+console.log('moment=',moment)
+
 //获取应用实例
 const app = getApp()
 
@@ -22,7 +31,7 @@ Page({
       cityIndex:e.detail.value
     })
   },
-  goto(){
+  goto(){console.log(66666)
     wx.redirectTo({
       url:'/pages/logs/logs'
     })
@@ -39,7 +48,7 @@ Page({
   onHide(){
     console.log('index.onHide')
   },
-  onReady(){
+  async onReady(){
     console.log('index.onReady');
 
     // 在onReady中发起ajax
@@ -49,29 +58,42 @@ Page({
     wx.showLoading({
       title:'小哥哥不着急...'
     })
-    wx.request({
-      url:'http://api.qfh5.cn/api/class',
-      success:({data})=>{
-        console.log('data=',data);
+    const data = await http.request('/api/class');
+    wx.hideLoading();
 
-        const categories = Array.from(new Set(data.data.map(item=>item.category)));
-        const cities = Array.from(new Set(data.data.map(item=>item.city)));
+    const categories = Array.from(new Set(data.data.map(item=>item.category)));
+    const cities = Array.from(new Set(data.data.map(item=>item.city)));
 
-        console.log('categories=',categories);
-        
-        this.setData({
-          classList:data.data,
-          categories,
-          cities
-        })
-      },
-      fail(){
-       
-      },
-      complete(){
-        wx.hideLoading()
-      }
+    console.log('categories=',categories);
+    
+    this.setData({
+      classList:data.data,
+      categories,
+      cities
     })
+    // wx.request({
+    //   url:'http://api.qfh5.cn/api/class',
+    //   success:({data})=>{
+    //     console.log('data=',data);
+
+    //     const categories = Array.from(new Set(data.data.map(item=>item.category)));
+    //     const cities = Array.from(new Set(data.data.map(item=>item.city)));
+
+    //     console.log('categories=',categories);
+        
+    //     this.setData({
+    //       classList:data.data,
+    //       categories,
+    //       cities
+    //     })
+    //   },
+    //   fail(){
+       
+    //   },
+    //   complete(){
+    //     wx.hideLoading()
+    //   }
+    // })
   },
 
 })

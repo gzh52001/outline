@@ -1,5 +1,16 @@
 <!-- index.wxml -->
+<import src="../../template/index.wxml"/>
+<wxs module="tools">
+  function renderText(){
+    return 'jingjing';
+  }
+
+  module.exports.renderText = renderText;
+</wxs>
+<wxs src="../../wxs/common.wxs" module="common" />
 <view class="container">
+  WXS: {{tools.renderText()}} 
+  时间：{{common.formatDate('2020-7-29')}}
   <view class="weui-flex topbar">
     <view class="weui-flex__item">
       <picker bindchange="changeCategory" value="{{categoryIndex}}" range="{{categories}}">
@@ -11,8 +22,9 @@
         <view class="picker">城市：{{cities[cityIndex]}}</view>
       </picker>
     </view>
+    
   </view>
-  <view class="weui-media-box weui-media-box_small-appmsg">
+  <!-- <view class="weui-media-box weui-media-box_small-appmsg">
     <view class="weui-cells weui-cells_in-small-appmsg">
       <navigator url="/pages/class/class?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{classList}}">
         <view class="weui-cell__hd">
@@ -24,5 +36,6 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
     </view>
-  </view>
+  </view> -->
+  <template is="list" data="{{datalist:classList,type:'class'}}"/>
 </view>

@@ -1,0 +1,22 @@
+<template name="list">
+	<view class="weui-media-box weui-media-box_small-appmsg">
+		<view class="weui-cells weui-cells_in-small-appmsg">
+    <navigator url="/pages/{{type}}/{{type}}?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{datalist}}">
+				<view class="weui-cell__hd">
+					<image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+				</view>
+				<view class="weui-cell__bd weui-cell_primary">
+					<view wx:if="{{type === 'class'}}">{{item.city}}-{{item.category}}-{{item.name}}</view>
+					<view wx:if="{{type === 'logs'}}">{{index+1}}-{{item}}</view>
+				</view>
+				<view class="weui-cell__ft weui-cell__ft_in-access"></view>
+			</navigator>
+		</view>
+	</view>
+	</template>
+
+  <template name="imglist"></template>
+
+  <view>
+  template view
+  </view>
