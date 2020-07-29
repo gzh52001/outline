@@ -4,6 +4,7 @@
     "pages/mine/mine",
     "pages/logs/logs",
     "pages/class/class",
+    "pages/camera/camera",
     "pages/manage/manage"
   ],
   "window": {

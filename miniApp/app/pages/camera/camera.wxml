@@ -1,0 +1,7 @@
+<view class="container">
+<camera device-position="back" flash="off" binderror="onError" style="width: 100%; height: 300px;"></camera>
+<view class="effect">扫码</view>
+<button bindtap="takePhoto">拍照1</button>
+{{path}}
+<image src="{{path}}" />
+</view>

@@ -80,9 +80,9 @@
 					"scene": 1007
 				},
 				{
-					"id": -1,
-					"name": "logs",
-					"pathName": "pages/logs/logs",
+					"id": 2,
+					"name": "camera",
+					"pathName": "pages/camera/camera",
 					"query": "",
 					"scene": null
 				}
