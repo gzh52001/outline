@@ -85,3 +85,73 @@
     * wxs与js语法不同，它有自己的语法，详情请看文档
     * wxs脚本代码不允许调用wx的接口
     * wxs不能与js通讯
+
+
+## 自定义组件
+
+* 定义
+> 利用`Component(otpions)`方法实现组件的自定义
+
+* 参数
+    > 小程序              Vue
+    * properties        props           父组件传入的数组
+    * data              data            组件数据
+    * methods           methods         方法
+    * observers         watch           监听属性修改
+    * behaviors         minxin          组件公共代码
+
+```js
+    //  Vue
+    // myMixin.js
+    export default {
+        data(){
+            return {
+                a:10,
+                b:20
+            }
+        },
+        created(){
+            console.log('mixin created')
+        }
+    }
+
+    // component/list.vue
+    import myMixin from '../myMixin';
+
+    export default {
+        mixins:[myMixin],
+        data(){
+            return {
+                user:'page'
+            }
+        },
+        methods:{
+
+        },
+        created(){
+            
+        },
+        mounted(){
+
+        }
+    }
+```
+
+* 使用
+    ```json
+        {
+        "usingComponents": {
+            // 格式：
+            // "组件名":"组件路径"
+        }
+    ```
+
+## 组件通讯
+* 父传子：properties
+* 子传父：自定义事件+触发
+```js
+    // this.$emit()
+    <my-component bind:data="handleData"/>
+    // this.triggerEvent(type,detail,options)
+    this.triggerEvent('data',{username:'laoxie'})
+```

@@ -1,2 +1,4 @@
 <!--pages/manage/manage.wxml-->
 <text>pages/manage/manage.wxml</text>
+
+<lxplayer src="path" bind:data="handleData"/>

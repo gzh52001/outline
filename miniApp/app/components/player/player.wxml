@@ -1,0 +1,6 @@
+<view class="player">
+  <view class="title">播放器</view>
+  <audio></audio>
+
+  <button bindtap="sendData">子to父</button>
+</view>
