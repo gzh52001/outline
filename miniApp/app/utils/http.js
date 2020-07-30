@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.qfh5.cn';
+const baseUrl = 'https://api.qfh5.cn';
 function request(url,data){
   return new Promise((resolve,reject)=>{
     wx.request({

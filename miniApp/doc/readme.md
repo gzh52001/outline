@@ -193,3 +193,37 @@
 ## 第三方组件库
 > 别人已经写好的自定义组件
 * weui组件库
+
+
+## ssl整数绑定
+```
+    # nginx配置ssl
+
+    # 接口服务器
+    server {
+        listen       443 ssl;
+        server_name  api.qfh5.cn;
+
+        ssl_certificate     C:/nginx-1.17.1/ssl/4285263_api.qfh5.cn.pem;
+        ssl_certificate_key  C:/nginx-1.17.1/ssl/4285263_api.qfh5.cn.key;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location / {
+            proxy_pass http://127.0.0.1:2020;
+            proxy_set_header HOST $http_host;
+        }
+    }
+
+    # http->https
+    server {
+        listen 80;
+        server_name api.qfh5.cn;
+        return 301 https://$server_name$request_uri;
+    }
+
+```

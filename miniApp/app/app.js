@@ -42,7 +42,7 @@ App({
   globalData: {
     userInfo: null
   },
-  baseUrl:'http://api.qfh5.cn',
+  baseUrl:'https://api.qfh5.cn',
   request(url,data){
     return new Promise((resolve,reject)=>{
       wx.request({
