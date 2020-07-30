@@ -89,6 +89,21 @@
 
 ## 自定义组件
 
+### 使用步骤
+1. 定义一个组件： `Component()`
+    * json
+    * wxml
+    * wxss
+    * js
+2. 配置
+    * `usingComponents`字段配置好**组件名**与**路径**
+        * 页面json：定义为局部局端
+        * app.json: 定义为全局组件
+3. 使用
+    ```js
+        <my-component />
+    ```
+
 * 定义
 > 利用`Component(otpions)`方法实现组件的自定义
 
@@ -129,7 +144,7 @@
 
         },
         created(){
-            
+
         },
         mounted(){
 
@@ -155,3 +170,26 @@
     // this.triggerEvent(type,detail,options)
     this.triggerEvent('data',{username:'laoxie'})
 ```
+
+## 自定义tabbar
+> 就是一个自定义组件
+
+1. 在根目录创建一个名为`custom-tab-bar`的目录，并定义以下文件
+    * index.js
+    * index.json
+    * index.wxml
+    * index.wxss
+2. 在app.json中定义tabBar字段
+    * list: 用于区分是否为tabBar页面
+    * custom: true  是否使用自定义tabBar
+
+### 获取tabar实例
+> this.getTabBar() 返回tabbar实例
+
+### 获取当前页面栈
+> this.getCurrentPages()    
+
+
+## 第三方组件库
+> 别人已经写好的自定义组件
+* weui组件库

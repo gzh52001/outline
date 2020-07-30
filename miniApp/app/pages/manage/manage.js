@@ -30,7 +30,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const currentPage = getCurrentPages();
+    const tabbar = this.getTabBar();
+    tabbar.changeIndex(currentPage[0].route)
   },
 
   /**

@@ -43,7 +43,10 @@ Page({
     console.log('index.onUnload')
   },
   onShow(){
-    console.log('index.onShow')
+    const currentPage = getCurrentPages();
+    const tabbar = this.getTabBar();
+    tabbar.changeIndex(currentPage[0].route)
+    
   },
   onHide(){
     console.log('index.onHide')

@@ -9,6 +9,8 @@
 </wxs>
 <wxs src="../../wxs/common.wxs" module="common" />
 <view class="container">
+  <mp-icon icon="add" color="black" size="{{25}}"></mp-icon>
+  <mp-badge style="margin-left: 5px;margin-right: 5px;" ext-class="blue"/>
   WXS: {{tools.renderText()}} 
   时间：{{common.formatDate('2020-7-29')}}
   <view class="weui-flex topbar">

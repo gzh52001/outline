@@ -1,0 +1,5 @@
+<cover-view class="tabbar">
+  <cover-view class="item {{currentTab===index ? 'active' : ''}}" wx:for="{{menu}}" bindtap="changeTab" data-item="{{item}}">
+    {{item.text}}
+  </cover-view>
+</cover-view>

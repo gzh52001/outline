@@ -1,0 +1,8 @@
+/* custom-tab-bar/custom-tab-bar.wxss */
+.tabbar{
+  display: flex;
+  background-color: rgba(255,255,255,.9);
+}
+
+.tabbar .item{flex:1;padding:10px;text-align:center;}
+.tabbar .active{color:#f00;}

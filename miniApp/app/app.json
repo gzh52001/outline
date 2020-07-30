@@ -32,5 +32,13 @@
     "custom":true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents":{
+    "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon",
+    "mp-badge": "/miniprogram_npm/weui-miniprogram/badge/badge"
+  },
+
+  "useExtendedLib":{
+    "weui":true
+  }
 }
