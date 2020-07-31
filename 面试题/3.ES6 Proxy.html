@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性特性</title>
+</head>
+<body>
+    <h1>ES6 Proxy</h1>
+    <script>
+        /*
+            内部原理
+            Vue2: Object.defineProperty() -> Vue3: Proxy()
+            ES6 Proxy
+            格式：new Proxy(target,interceptor)
+                * target: 监听目标对象
+                * interceptor: 监听器
+           
+        */
+        
+        const user = {username:'laoxie',password:123}
+        const result = new Proxy(user,{
+            get(target,key){
+                // 拦截读取操作
+                console.log(`读取${key}属性`)
+                return target[key];
+            },
+            set(target,key,value){
+                // 拦截写入操作
+                console.log(`${key}属性被修改为：${value}`)
+                target[key] = value;
+            }
+        })
+        result.username;//
+        result.username = 'xiaoxie';
+
+    </script>
+</body>
+</html>

@@ -239,3 +239,38 @@
 * wePY：类Vue开发
 
 * taro：基于React
+
+
+### mobx
+
+* observable：实现属性监听
+```js
+    import {observable} from 'mobx';
+
+    const state = observable({
+        username:'laoxie',
+        password:123
+    });
+
+    // 内部原理
+    // Vue: Object.defineProperty() -> Proxy()
+    // ES6 Proxy(target,interceptor)
+    const user = {username:'laoxie',password:123}
+    const result = new Proxy()
+
+    state.username = 'xiaoxie';
+
+
+    data(){
+        return {
+            username:'laoxie'
+            password:123,
+            goods:{}
+        }
+    },
+    mounted(){
+        this.password = 123456;
+        this.age = 18;//
+    }
+```
+
