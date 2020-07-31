@@ -1,0 +1,1 @@
+<view class="_div"><label id="username">用户名：</label><input id="username"/><label id="password">用户名：</label><input type="password" id="password"/><button>登录</button><navigator href="xxx" class="_a">注册</navigator></view>

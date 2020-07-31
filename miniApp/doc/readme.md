@@ -227,3 +227,15 @@
     }
 
 ```
+
+
+## 小程序跨平台框架
+> 一次开发，多端覆盖
+
+### uni-app：基于Vue开发
+> 原理：实现一个编译器，把vue的代码，编译成小程序的代码
+* 如：index.vue 文件编译成 index.json,index.wxml,index.js,index.wxss
+
+* wePY：类Vue开发
+
+* taro：基于React
