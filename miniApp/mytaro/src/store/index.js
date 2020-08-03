@@ -1,8 +1,9 @@
 import counterStore from './counter'
-// import userStore from './user'
+import userStore from './user'
 
 const store = {
-    counterStore
+    counterStore,
+    userStore
 }
 
 export default store;

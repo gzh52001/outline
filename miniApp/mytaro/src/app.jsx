@@ -3,6 +3,8 @@ import { Provider } from 'mobx-react'
 import store from './store'
 import './app.scss'
 
+// import 'taro-ui/dist/style/index.scss'
+import './custom-variables.scss'
 
 
 class App extends Component {

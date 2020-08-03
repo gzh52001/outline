@@ -7,16 +7,24 @@ import http from '../../utils/http';
 
 import './index.scss'
 
-const app = Taro.getApp();
-console.log('http=',http);
-console.log('app=',app);
 
 @inject('store')
 @observer
 class Index extends Component {
   componentWillMount () { }
 
-  componentDidMount () { }
+  async componentDidMount () {
+    // hard code
+    // const {data} = await Taro.request({
+    //   url:'https://api.qfh5.cn/api/class',
+    // });
+
+    const data = await http.get('/api/class')
+    console.log('data=',data);
+
+    const user = this.props.store.userStore;
+    user.password = 'new password';
+  }
 
   componentWillUnmount () { }
 
@@ -45,13 +53,7 @@ class Index extends Component {
     const { counterStore: { counter } } = this.props.store
     return (
       <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-        <View className="title">
-          View
-        </View>
+        
       </View>
     )
   }

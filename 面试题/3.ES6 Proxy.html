@@ -18,7 +18,11 @@
            
         */
         
-        const user = {username:'laoxie',password:123}
+        const user = {
+            username:'laoxie',
+            password:123
+        }
+        
         const result = new Proxy(user,{
             get(target,key){
                 // 拦截读取操作
