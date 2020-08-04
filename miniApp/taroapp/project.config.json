@@ -1,5 +1,6 @@
 {
   "miniprogramRoot": "./dist",
+  "cloudfunctionRoot": "cloud/",
   "projectname": "taroapp",
   "description": "",
   "appid": "touristappid",

@@ -50,8 +50,39 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: async function () {
+    // 小程序端获取数据的方式
+    // const db = wx.cloud.database();
+    // const user = db.collection('user');
+    // const {data} = await user.field({
+    //   password:false,_id:false
+    // }).get();
+   
 
+    // 服务端（云函数）获取数据的方式
+    // 如何调用云函数
+    const {result} = await wx.cloud.callFunction({
+      name:'user',
+      data:{
+        type:'get'
+      }
+    });
+    
+     console.log('cloudData=',result.data);
+
+     // 新增
+    wx.cloud.callFunction({
+      name:'user',
+      data:{
+        type:'add',
+        data:{
+          name:'jingjing',
+          password:123,
+          gender:'不详'
+        }
+      }
+    });
+    
   },
 
   /**

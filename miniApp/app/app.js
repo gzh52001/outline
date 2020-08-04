@@ -32,6 +32,11 @@ App({
         }
       }
     })
+
+    // 云开发初始化
+    wx.cloud.init({
+      env:'test-0tcfp'
+   })
   },
   onShow(options){
     console.log('app.onShow',options)

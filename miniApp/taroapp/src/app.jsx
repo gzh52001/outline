@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'mobx-react'
+import Taro from '@tarojs/taro';
 
 import counterStore from './store/counter'
 // import 'taro-ui/dist/style/index.scss'
@@ -11,7 +12,11 @@ const store = {
 }
 
 class App extends Component {
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.cloud.init({
+      env: 'qf-52690b'
+    })
+  }
 
   componentDidShow () {}
 
