@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<h1>H5+接口调用示例v2.0</h1>
+	<ul class="mui-table-view list">
+	    <li class="mui-table-view-cell mui-media">
+	        <a class="mui-navigate-right" id="gotoCamera">
+	            <div class="mui-media-object mui-pull-left mui-icon mui-icon-camera"></div>
+	            <div class="mui-media-body">
+	                摄像头
+	                <p class='mui-ellipsis'>拍照、录像、扫码、录制小视频等</p>
+	            </div>
+	        </a>
+	    </li>
+	    <li class="mui-table-view-cell">
+	        <a class="mui-navigate-right" id="btnSpeech">
+	            <span class="mui-media-object mui-pull-left mui-icon mui-icon-mic"></span>
+	            <div class="mui-media-body">
+	                语音助手
+	                <p class='mui-ellipsis'>语音搜索、唤醒、聊天...</p>
+	            </div>
+	        </a>
+	    </li>
+	    <li class="mui-table-view-cell">
+	        <a class="mui-navigate-right" id="btnPosition">
+	            <span class="mui-media-object mui-pull-left mui-icon mui-icon-map"></span>
+	            <div class="mui-media-body">
+	                位置信息
+	                <p class='mui-ellipsis'>查看当前位置信息</p>
+	            </div>
+	        </a>
+	    </li>
+	    <li class="mui-table-view-cell">
+	        <a class="mui-navigate-right" id="btnShare">
+	            <span class="mui-media-object mui-pull-left mui-icon mui-icon-pengyouquan"></span>
+	            <div class="mui-media-body">
+	                分享
+	                <p class='mui-ellipsis'>系统、微信、QQ等分享功能</p>
+	            </div>
+	        </a>
+	    </li>
+	    <li class="mui-table-view-cell">
+	        <a class="mui-navigate-right" id="btnPayment">
+	            <span class="mui-media-object mui-pull-left mui-icon mui-icon-spinner-cycle mui-spin"></span>
+	            <div class="mui-media-body">
+	                支付
+	                <p class='mui-ellipsis'>支付宝、微信支付功能</p>
+	            </div>
+	        </a>
+	    </li>
+	</ul>
+	<script>
+		/**
+		 * camera
+		 * 拍照
+		 * 录像
+		 */
+		document.addEventListener( "plusready", ()=>{
+			console.log('plus=',plus);
+			
+			gotoCamera.onclick = ()=>{
+				// 点击跳转页面：打开一个webview窗口并显示
+				const wv = plus.webview.create('views/page-camera.html','pageCamera');
+				
+				plus.webview.show( 'pageCamera','slide-in-left');
+			}
+			
+			
+		}, false );
+		
+	</script>
+</body>
+</html>

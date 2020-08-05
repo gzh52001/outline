@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mui.css">
+    <script src="../js/mui.js"></script>
+</head>
+<body>
+    <h1>语音调用</h1>
+    <button id="btnBack">返回</button>
+    <div>
+		<input type="search" id="search" />
+        <button id="btnSpeech" type="button" class="mui-btn mui-btn-primary mui-btn-outlined">语音</button>
+    </div>
+    <script>
+        document.addEventListener( "plusready", ()=>{
+            document.querySelector('#btnBack').onclick=()=>{
+                plus.webview.close('pageSpeech','slide-out-right',2000)
+
+            }
+
+            document.querySelector('#btnSpeech').onclick=()=>{
+               plus.speech.startRecognize( {
+					engine:'iFly',
+					lang:'zh-cantonese',
+					nbest:3,
+				   }, (result)=>{
+					console.log('result=',result);
+					search.value = result;
+				   });
+            }
+        });
+
+    </script>
+</body>
+</html>

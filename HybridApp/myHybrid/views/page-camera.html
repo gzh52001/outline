@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mui.css">
+    <script src="../js/mui.min.js"></script>
+	<style>
+		#movie{width:100%;}
+	</style>
+</head>
+<body>
+    <h1>摄像头调用实例11</h1>
+    <button id="btnBack">返回</button>
+    <div>
+        <button id="btnPz" type="button" class="mui-btn mui-btn-primary mui-btn-outlined">拍照</button>
+        <button id="btnLx" type="button" class="mui-btn mui-btn-success mui-btn-outlined">录像</button>
+    </div>
+	<video id="movie" autoplay></video>
+    <script>
+		mui.plusReady(function () {
+			const cmr = plus.camera.getCamera(2);
+		    btnPz.onclick = ()=>{
+				// 获取摄像头
+				 console.log('手机参数=',cmr);
+				 cmr.captureImage((path)=>{
+					 console.log('path=',path);
+					 
+					 // 保存到相册
+					 plus.gallery.save(path,()=>{
+						 
+						 plus.nativeUI.toast('保存到相册成功');
+					 })
+				 });
+				 
+				 
+			
+			}
+			
+			btnLx.onclick = ()=>{
+				cmr.startVideoCapture((path)=>{
+					const realPath = plus.io.convertLocalFileSystemURL(path)
+					console.log('path=',path);
+					console.log('realPath=',realPath);
+					movie.src = realPath;
+				})
+			}
+			
+			// f返回：关闭webview页面
+			btnBack.onclick = ()=>{
+				const currentWebView = plus.webview.currentWebview()
+				plus.webview.close( currentWebView, 'slide-out-right');
+			}
+		})
+
+    </script>
+</body>
+</html>
