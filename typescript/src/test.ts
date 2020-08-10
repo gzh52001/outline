@@ -97,3 +97,74 @@ interface IgetUser{
 const getPeple:IgetUser = (url:string,page:number=1):void=>{
 
 }
+
+// 数组
+const arr:number[] = [10,20,30];
+
+// 利用泛型定义数组类型
+const arr2:Array<number> = [10,20,30];
+
+// 元组
+let arr3:[number,number,string] = [10,20,'h5']
+
+// 复杂数组
+interface Igoods{
+    name:string,
+    price:number,
+    qty?:number
+}
+const goodslist:Igoods[] = [{
+    name:'huawei mate40 pro',
+    price:6998,
+    qty:1
+},{
+    name:'xiaomi 10 pro',
+    price:4998,
+    qty:10
+}];
+
+const goodslist2:Array<Igoods> = [
+    {
+        name:'huawei mate40 pro',
+        price:6998,
+        qty:1
+    },{
+        name:'xiaomi 10 pro',
+        price:4998
+    }
+]
+
+
+// 类
+class Person{
+    // 声明一个共有属性
+    // public classNam:string;
+    public username:string = "aaaa";
+    private readonly age:number = 18;
+    protected gender:string = 'male'
+    say(){
+        this.age;
+    }
+}
+
+class Student extends Person{
+    public a:number;
+    constructor(){
+        super();
+        this.a = 10;
+
+        this.username;
+        this.gender;
+    }
+}
+
+const p = new Person();
+p.username;
+// p.age;//保存，私有属性只能在类中访问
+// p.gender;
+
+const s = new Student();
+s.username;// aaa
+s.a;//10
+// s.age;// 私有属性不能被继承
+
