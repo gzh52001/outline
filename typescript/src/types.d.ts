@@ -1,0 +1,1 @@
+type ageType = string|number;

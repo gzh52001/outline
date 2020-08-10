@@ -38,8 +38,24 @@ class Home extends Component{
 
 
     }
+    changeKeyword = (e)=>{
+        this.setState({
+            keyword:e.target.value
+        })
+    }
+    speech=()=>{
+        if(!window.plus) return;
+        plus.speech.startRecognize( {
+            engine:'iFly',
+            lang:'zh-cn'
+        }, (result)=>{
+            this.setState({
+                keyword:result
+            })
+        } );
+    }
     render(){
-        const {recommend,categories} = this.state;
+        const {recommend,categories,keyword} = this.state;
         console.log(recommend,categories);
         return (
             <div>
@@ -50,6 +66,11 @@ class Home extends Component{
                         </div>)
                     }
                 </Carousel>
+                <div>
+                    <input type="search" value={keyword} onChange={this.changeKeyword} />
+                    <button onClick={this.speech}>语音</button>
+                    <button>搜索</button>
+                </div>
                 <div className="goodslist">
                     {
                         categories.map((item,idx)=>(

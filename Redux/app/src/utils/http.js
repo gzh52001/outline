@@ -2,7 +2,7 @@
  * 封装ajax请求
  * fetch(url,options)
  */
-let baseUrl = process.env.NODE_ENV === 'development' ? 'https://www.nanshig.com' : 'http://aoxie.com'
+let baseUrl = process.env.NODE_ENV === 'development' ? 'https://www.nanshig.com' : 'https://www.nanshig.com'
 
 export async function request(url, data = {}, options = {}) {
     if(options.baseUrl){

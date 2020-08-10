@@ -12,7 +12,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
     // 出口
     output:{
         path:path.join(__dirname,'dist'),
-        filename:"[name].[hash:5].bundle.js", // main.sdlkjfsld.boundle.js
+        filename:"[name].[hash:5].bundle.js", // main.sdlkjfsld.boundle.js,
+        // publicPath:'./'
     },
 
     // 服务器
